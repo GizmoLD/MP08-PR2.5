@@ -31,6 +31,16 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"/>
 
+    <!-- Nuevas variables para representar los valores de x, y, z -->
+    <TextView
+        android:id="@+id/textViewValues"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Values: (0.0, 0.0, 0.0)"
+        android:layout_below="@id/textViewZ"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
+
     <!-- Puedes añadir más elementos de interfaz de usuario según tus necesidades -->
 
 </RelativeLayout>

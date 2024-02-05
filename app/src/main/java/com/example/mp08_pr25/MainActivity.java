@@ -2,22 +2,33 @@ package com.example.mp08_pr25;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     private SensorManager sensorManager;
     private Sensor sensor;
     SensorEventListener sensorListener;
+    private TextView textViewX;
+    private TextView textViewY;
+    private TextView textViewZ;
+
+
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        textViewX = findViewById(R.id.textViewX);
+        textViewY = findViewById(R.id.textViewY);
+        textViewZ = findViewById(R.id.textViewZ);
 
         sensorListener = new SensorEventListener() {
             @Override
@@ -28,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 float zAcc = sensorEvent.values[2];
 
                 // Processament o visualització de dades...
+                updateTextViews(xAcc, yAcc, zAcc);
             }
 
             @Override
@@ -45,5 +57,13 @@ public class MainActivity extends AppCompatActivity {
             sensorManager.registerListener(sensorListener,sensor,
                     SensorManager.SENSOR_DELAY_NORMAL);
         }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void updateTextViews(float xAcc, float yAcc, float zAcc) {
+        // Actualiza los TextViews con los nuevos valores
+        textViewX.setText("X-Axis: " + xAcc);
+        textViewY.setText("Y-Axis: " + yAcc);
+        textViewZ.setText("Z-Axis: " + zAcc);
     }
 }
